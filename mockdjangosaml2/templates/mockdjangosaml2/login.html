@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+
+		<title>AAI@localhost</title>
+
+		<script type="text/javascript">
+		function sf() {
+			document.getElementById("username").focus();
+		}
+
+		</script>
+		<style type="text/css">
+			body {background: #EDEDED;font-family: Arial, Helvetica, sans-serif;}
+			input {font-family: Arial, Helvetica, sans-serif; font-size:1em;}
+			#aai_wrapper {width: 98%;max-width: 480px;min-width: 280px;margin: 14% auto 3% auto;}
+			@media only screen and (max-width: 320px) {#aai_wrapper {margin: 4% auto 4% auto;}}
+			@media screen and (max-width: 540px) and (orientation: landscape) {
+			#aai_wrapper {margin: 2% auto 2% auto;}}
+			#aai_centerbox {border: 1px solid #FFFFFF;background-color: #FFFFFF;-moz-box-shadow: 0 0 1px #A0B1C4;-webkit-box-shadow: 0 0 1px #A0B1C4;box-shadow: 0 0 1px #A0B1C4;border-radius: 20px;}
+			.aai_logo_container {text-align: right;height: 90px;border-radius: 20px 20px 0 0;background-color: #FFFFFF;margin-bottom: 0;}
+			.aai_logo {border-style: none;margin-top:8px;margin-right:10px;width: 136px;height: 75px;}
+			.aai_form_container {color: #9E0B0E;background-color: #A0B1C4;background: -moz-linear-gradient(left, #A0B1C4, #C2CBD8);background: -webkit-gradient(linear, left top, right top, from(#A0B1C4), to(#C2CBD8));background: -webkit-linear-gradient(left, #A0B1C4, #C2CBD8);background: -o-linear-gradient(left, #A0B1C4, #C2CBD8);background: -ms-linear-gradient(left, #A0B1C4, #C2CBD8);border-radius: 0 0 20px 20px;margin-bottom: 0;}
+			.aai_messages_container {padding: 15px 40px;font-size: 13px;font-weight: bold;text-align: center;color: red;background-color: #A0B1C4;background: -moz-linear-gradient(left, #A0B1C4, #C2CBD8);background: -webkit-gradient(linear, left top, right top, from(#A0B1C4), to(#C2CBD8));background: -webkit-linear-gradient(left, #A0B1C4, #C2CBD8);background: -o-linear-gradient(left, #A0B1C4, #C2CBD8);background: -ms-linear-gradient(left, #A0B1C4, #C2CBD8);}
+			.aai_login_form {padding-left: 40px;padding-right: 60px;background-color: #A0B1C4;background: -moz-linear-gradient(left, #A0B1C4, #C2CBD8);background: -webkit-gradient(linear, left top, right top, from(#A0B1C4), to(#C2CBD8));background: -webkit-linear-gradient(left, #A0B1C4, #C2CBD8);background: -o-linear-gradient(left, #A0B1C4, #C2CBD8);background: -ms-linear-gradient(left, #A0B1C4, #C2CBD8);width: auto;height: 218px;}
+			label {font-size: 16px;font-weight: bold;color: #5E6C7C;text-decoration: none;}
+			input {margin:5px 0 15px 0; padding: 0 10px;font-weight: normal;color: #444444;width: 100%;display: block;border: 1px solid #AEBACA;height: 35px;border-radius: 10px;}
+			#aai_loginbutton_container {float:left;width:50%;padding-top: 17px;text-align: center;}
+			#aai_loginbutton {font-family: Arial, Helvetica, sans-serif;font-size:13px;font-weight: bold;height:2.4em;color: #FFFFFF;background-color: #9E0B0E;border: 1px solid #8D0A0D;border-radius: 10px;-moz-border-radius: 10px;-webkit-border-radius: 10px;width: 100px;margin: 0 auto;}
+			#aai_loginbutton:hover {cursor: pointer;}
+			#aai_helpurl_container {width: 50%;float:right;padding-top: 22px;text-align: center;}
+			#aai_helpurl {padding-left:30px;font-size: 13px;font-weight: bold;text-decoration: underline;color: #9E0B0E;margin: 0 auto;}
+			.aai_footer {font-size: 13px;font-weight: bold;text-align: center;padding: 15px 0;color: #9E0B0E;background-color: #A0B1C4;background: -moz-linear-gradient(left, #A0B1C4, #C2CBD8);background: -webkit-gradient(linear, left top, right top, from(#A0B1C4), to(#C2CBD8));background: -webkit-linear-gradient(left, #A0B1C4, #C2CBD8);background: -o-linear-gradient(left, #A0B1C4, #C2CBD8);background: -ms-linear-gradient(left, #A0B1C4, #C2CBD8);border-radius: 0 0 20px 20px;margin-bottom: 0; display: inline-block; width: 100%}
+			.errorlist {list-style: none inside none; padding: 0;}
+		</style>
+
+	</head>
+
+	<body onload="sf();">
+
+		<div id="aai_wrapper">
+			<div id="aai_centerbox">
+				<div class="aai_logo_container">
+					<img class="aai_logo" src="{{ STATIC_URL }}mockdjangosaml2/aai_logo_localhost.png" alt="AAI@localhost logo">
+				</div>
+				<div class="aai_form_container">
+				<div class="aai_messages_container">
+					<span> </span>
+				</div>
+
+				<div class="aai_login_form">
+					<form name="f" method="post" action="?">
+						{% csrf_token %}
+						{{ form }}
+						<input type="hidden" name="next" value="{{ next }}" />
+						<div id="aai_loginbutton_container"><input id="aai_loginbutton" name="Submit" value="Prijavi se" tabindex="3" type="submit"></div>
+				</div>
+
+				<div>
+					<div class="aai_footer">
+						Autentikacijska i autorizacijska infrastruktura znanosti i<br/>visokog obrazovanja u Republici Hrvatskoj
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+</body></html>
