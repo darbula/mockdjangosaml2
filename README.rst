@@ -18,12 +18,12 @@ Usage
 * update project's ``urls.py`` file to include separate set of patterns for ``DEBUG = True`` case::
 
     if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^saml2/', include('mockdjangosaml2.urls')),
-    )
+        urlpatterns += patterns('',
+            (r'^saml2/', include('mockdjangosaml2.urls')),
+        )
     else:
-    urlpatterns += patterns('',
-        (r'^saml2/', include('djangosaml2.urls')),
-    )
+        urlpatterns += patterns('',
+            (r'^saml2/', include('djangosaml2.urls')),
+        )
 
-* add mock users and their attributes to ``MOCK_SAML2_USERS` in `settings.py``. It should be formated as sample given in applications ``settings.py`` file.
+* add mock users and their attributes to ``MOCK_SAML2_USERS`` in ``settings.py``. It should be formated as sample given in applications ``settings.py`` file.
