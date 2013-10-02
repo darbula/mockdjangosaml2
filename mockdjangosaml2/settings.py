@@ -1,18 +1,37 @@
 from django.conf import settings
 
+
+# Attribute names and values are taken from Croatian AAI@EduHr infrastructure
+# If needed this deafult names and values can be modified in projects 
+# specific MOCK_SAML2_USERS in settings.py  
 MOCK_SAML2_USERS = getattr(settings, 'MOCK_SAML2_USERS', {
-    'nsurname@aai-test.hr': {
+    'admin@aai-test.hr': {
+        'password': 'admin',
+        'session_info': {
+            'ava': {
+                'hrEduPersonPrimaryAffiliation': ['djelatnik'],
+                'cn': ['Admin Surname'],
+                'hrEduPersonOIB': ['12345678901'],
+                'hrEduPersonUniqueID': ['asurname@aai-test.hr'],
+                'sn': ['Surname'],
+                'hrEduPersonHomeOrg': ['aai-test.hr'],
+                'mail': ['admin.surname@aai-test.hr'],
+                'givenName': ['Admin']
+            },
+        },
+    },
+    'employee@aai-test.hr': {
         'password': 'somepwd1',
         'session_info': {
             'ava': {
                 'hrEduPersonPrimaryAffiliation': ['djelatnik'],
-                'cn': ['Name Surname'],
-                'hrEduPersonOIB': ['12345678901'],
-                'hrEduPersonUniqueID': ['nsurname@aai-test.hr'],
+                'cn': ['Employee Surname'],
+                'hrEduPersonOIB': ['12345678902'],
+                'hrEduPersonUniqueID': ['esurname@aai-test.hr'],
                 'sn': ['Surname'],
                 'hrEduPersonHomeOrg': ['aai-test.hr'],
-                'mail': ['name.aurname@aai-test.hr'],
-                'givenName': ['Name']
+                'mail': ['employee.surname@aai-test.hr'],
+                'givenName': ['Employee']
             },
         },
     },
@@ -21,13 +40,13 @@ MOCK_SAML2_USERS = getattr(settings, 'MOCK_SAML2_USERS', {
         'session_info': {
             'ava': {
                 'hrEduPersonPrimaryAffiliation': ['student'],
-                'cn': ['Name Surname'],
-                'hrEduPersonOIB': ['12345678901'],
-                'hrEduPersonUniqueID': ['nsurname@aai-test.hr'],
+                'cn': ['Student Surname'],
+                'hrEduPersonOIB': ['12345678903'],
+                'hrEduPersonUniqueID': ['ssurname@aai-test.hr'],
                 'sn': ['Surname'],
                 'hrEduPersonHomeOrg': ['aai-test.hr'],
-                'mail': ['name.aurname@aai-test.hr'],
-                'givenName': ['Name']
+                'mail': ['student.surname@aai-test.hr'],
+                'givenName': ['Student']
             },
         },
     },
