@@ -16,6 +16,8 @@ from djangosaml2.signals import post_authenticated
 from djangosaml2.utils import get_custom_setting
 
 from mockdjangosaml2.settings import MOCK_SAML2_USERS
+from djangosaml2.conf import get_config
+from django.core.urlresolvers import reverse
 logger = logging.getLogger('djangosaml2')
 
 
@@ -35,7 +37,8 @@ class MockAuthForm(AuthenticationForm):
         return self.cleaned_data
 
 
-def login(request, authorization_error_template='djangosaml2/auth_error.html'):
+def login(request, config_loader_path=None,
+          authorization_error_template='djangosaml2/auth_error.html'):
     """ Mock SAML2 Authorization form. """
     if request.method!="POST":
         came_from = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
@@ -64,27 +67,45 @@ def login(request, authorization_error_template='djangosaml2/auth_error.html'):
                     'came_from': came_from,
                     }, context_instance=RequestContext(request))
 
-    attribute_mapping = get_custom_setting(
-            'SAML_ATTRIBUTE_MAPPING', {'uid': ('username', )})
-    create_unknown_user = get_custom_setting(
-            'SAML_CREATE_UNKNOWN_USER', True)
-    logger.debug('Mock assertion Consumer Service started')
 
     logger.debug('Check credentials.')
     form = MockAuthForm(data=request.POST)
     if not form.is_valid():
         return TemplateResponse(request, 'mockdjangosaml2/login.html',
                                 {'form': form})
-
     # authenticate the remote user
     session_info = \
         MOCK_SAML2_USERS[request.POST.get('username')]['session_info']
+    request.session['mock_session_info'] = session_info
+    request.session['mock_came_from'] = came_from
+    request.session.modified = True
+                   
+    if config_loader_path:
+        conf = get_config(config_loader_path, request)
+        acs_location = conf
+    else:
+        acs_location = reverse('saml2_acs')
+    return HttpResponseRedirect(acs_location)
+
+
+def assertion_consumer_service(request,
+                               config_loader_path=None,
+                               attribute_mapping=None,
+                               create_unknown_user=None):
+
+    attribute_mapping = get_custom_setting(
+            'SAML_ATTRIBUTE_MAPPING', {'uid': ('username', )})
+    create_unknown_user = get_custom_setting(
+            'SAML_CREATE_UNKNOWN_USER', True)
+    logger.debug('Mock assertion Consumer Service started')
 
     if callable(attribute_mapping):
         attribute_mapping = attribute_mapping()
     if callable(create_unknown_user):
         create_unknown_user = create_unknown_user()
 
+    session_info = request.session['mock_session_info']
+    came_from = request.session['mock_came_from']
     logger.debug('Trying to authenticate the user')
     user = auth.authenticate(session_info=session_info,
                              attribute_mapping=attribute_mapping,
