@@ -8,7 +8,7 @@ def read(fname):
     
 setup(
     name='mockdjangosaml2',
-    version='0.10.1',
+    version='0.10.2',
     url='http://github.com/darbula/mockdjangosaml2',
     author='Damir Arbula',
     author_email='damir.arbula@gmail.com',

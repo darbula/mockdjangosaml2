@@ -33,7 +33,6 @@ class MockAuthForm(AuthenticationForm):
                     self.error_messages['invalid_login'] % {
                         'username': self.username_field.verbose_name
                     })
-        self.check_for_test_cookie()
         return self.cleaned_data
 
 
