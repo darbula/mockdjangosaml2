@@ -1,6 +1,6 @@
 Mock djangosaml2
 ================
-In projects that use ``djangosaml2`` in production environment it is usefull to have a mockup authentication system that can be used in development and testing environments i.e. when ``DEBUG = True``.
+In projects that use ``djangosaml2`` in production environment it is useful to have a mockup authentication system that can be used in development and testing environments i.e. when ``DEBUG = True``.
 
 Install
 -------
