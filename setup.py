@@ -5,10 +5,10 @@ from setuptools import setup, find_packages
 def read(fname):
     # read the contents of a text file
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
-    
+
 setup(
     name='mockdjangosaml2',
-    version='0.10.3',
+    version='0.16.1',
     url='http://github.com/darbula/mockdjangosaml2',
     author='Damir Arbula',
     author_email='damir.arbula@gmail.com',
