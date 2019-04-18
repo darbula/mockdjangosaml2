@@ -8,8 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import logout as django_logout
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.template.response import TemplateResponse
 
 from djangosaml2.signals import post_authenticated
@@ -62,10 +61,12 @@ def login(request, config_loader_path=None,
             return HttpResponseRedirect(came_from)
         else:
             logger.debug('User is already logged in')
-            return render_to_response(authorization_error_template, {
+            return render(
+                request,
+                authorization_error_template, {
                     'came_from': came_from,
-                    }, context_instance=RequestContext(request))
-
+                }
+            )
 
     logger.debug('Check credentials.')
     form = MockAuthForm(data=request.POST)
@@ -78,7 +79,7 @@ def login(request, config_loader_path=None,
     request.session['mock_session_info'] = session_info
     request.session['mock_came_from'] = came_from
     request.session.modified = True
-                   
+
     if config_loader_path:
         conf = get_config(config_loader_path, request)
         acs_location = conf
@@ -106,8 +107,7 @@ def assertion_consumer_service(request,
     session_info = request.session['mock_session_info']
     came_from = request.session['mock_came_from']
     logger.debug('Trying to authenticate the user')
-    user = auth.authenticate(request=request,
-                             session_info=session_info,
+    user = auth.authenticate(session_info=session_info,
                              attribute_mapping=attribute_mapping,
                              create_unknown_user=create_unknown_user)
     if user is None:
